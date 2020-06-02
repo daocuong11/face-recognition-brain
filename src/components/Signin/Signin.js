@@ -17,6 +17,13 @@ class Signin extends React.Component {
 	onPasswordChange = (event) => {
 		this.setState({signInPassword: event.target.value})
 	}
+	
+	onKeyPress = (event) => {
+		if(event.keycode == 13){
+					this.processCallAPI();
+
+		}
+	}
 
 	onSubmitSignIn = (event) => {
 		/*
@@ -28,7 +35,11 @@ class Signin extends React.Component {
 		*/
 
 		event.preventDefault();
-		fetch('http://localhost:3000/signin', {
+		this.processCallAPI();
+	}
+	
+	processCallAPI(){
+	fetch('http://localhost:3000/signin', {
 			method:'post',
 			headers:{'Content-Type' : 'application/json'},
 			body:JSON.stringify({
